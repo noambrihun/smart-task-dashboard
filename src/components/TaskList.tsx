@@ -10,9 +10,24 @@ type Props = {
 };
 
 function TaskList({ tasks, setTasks }: Props) {
+
   const handleDelete = (id: number) => {
     setTasks((prev) => prev.filter((task) => task.id !== id));
   };
+
+  const handleEdit = (id: number) => {
+  const newText = prompt("Edit task:");
+
+  if (!newText || newText.trim() === "") return;
+
+  setTasks((prev) =>
+    prev.map((task) =>
+      task.id === id
+        ? { ...task, text: newText }
+        : task
+    )
+  );
+};
 
   return (
     <div className="bg-gray-800 flex flex-col min-h-screen items-center justify-center text-white p-4">
@@ -25,12 +40,13 @@ function TaskList({ tasks, setTasks }: Props) {
         >
           <span>{task.text}</span>
 
-          <button
-            onClick={() => handleDelete(task.id)}
-            className="bg-red-600 px-3 py-1 rounded"
-          >
-            Delete
-          </button>
+        <button onClick={() => handleEdit(task.id)} className="bg-yellow-500 px-3 py-1 rounded mr-2" >
+          Edit
+        </button>
+        <button onClick={() => handleDelete(task.id)} className="bg-red-600 px-3 py-1 rounded">
+        Delete
+        </button>
+
         </div>
       ))}
     </div>
