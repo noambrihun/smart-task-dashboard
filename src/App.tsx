@@ -12,8 +12,8 @@ function App() {
   return (
     <div className="bg-gray-800 flex flex-row items-center justify-center min-h-screen text-white gap-4">
       <Header />
-      <AddTask />
-      <TaskList tasks={tasks} />
+      <AddTask setTasks={setTasks} />
+      <TaskList tasks={tasks} setTasks={setTasks} />
     </div>
   );
 }
