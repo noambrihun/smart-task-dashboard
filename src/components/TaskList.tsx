@@ -30,26 +30,40 @@ function TaskList({ tasks, setTasks }: Props) {
 };
 
   return (
-    <div className="bg-gray-800 flex flex-col min-h-screen items-center justify-center text-white p-4">
-      <h2 className="text-xl font-bold mb-4">Task List</h2>
+    <section className="rounded-2xl border border-slate-800/80 bg-slate-900/75 p-6 shadow-xl shadow-slate-950/30 backdrop-blur">
+      <div className="mb-5 flex items-center justify-between gap-3">
+        <h2 className="text-lg font-semibold text-slate-100 sm:text-xl">Task List</h2>
+        <span className="rounded-full border border-slate-700 bg-slate-950/60 px-3 py-1 text-xs font-medium text-slate-300">
+          {tasks.length} tasks
+        </span>
+      </div>
 
-      {tasks.map((task) => (
-        <div
-          key={task.id}
-          className="bg-gray-700 w-72 p-3 rounded mb-2 flex justify-between items-center"
-        >
-          <span>{task.text}</span>
+      <div className="space-y-3">
+        {tasks.map((task) => (
+          <article
+            key={task.id}
+            className="flex flex-col gap-3 rounded-xl border border-slate-700/70 bg-slate-800/70 p-4 sm:flex-row sm:items-center sm:justify-between"
+          >
+            <span className="break-words text-slate-100">{task.text}</span>
 
-        <button onClick={() => handleEdit(task.id)} className="bg-yellow-500 px-3 py-1 rounded mr-2" >
-          Edit
-        </button>
-        <button onClick={() => handleDelete(task.id)} className="bg-red-600 px-3 py-1 rounded">
-        Delete
-        </button>
-
-        </div>
-      ))}
-    </div>
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => handleEdit(task.id)}
+                className="rounded-lg bg-amber-500 px-3 py-1.5 text-sm font-medium text-slate-950 transition hover:bg-amber-400"
+              >
+                Edit
+              </button>
+              <button
+                onClick={() => handleDelete(task.id)}
+                className="rounded-lg bg-rose-600 px-3 py-1.5 text-sm font-medium text-white transition hover:bg-rose-500"
+              >
+                Delete
+              </button>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
   );
 }
 
